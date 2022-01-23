@@ -24,8 +24,8 @@ spec:
   # Use service account that can deploy to all namespaces
   # serviceAccountName: cd-jenkins
   containers:
-  - name: nodejs
-    image: node:latest
+  - name: node
+    image: node:current-alpine3.15
     command:
     - cat
     tty: true
@@ -45,7 +45,7 @@ spec:
   stages {
     stage('build') {
       steps {
-        container('nodejs') {
+        container('node') {
           sh """
             ln -s `pwd`
           """
