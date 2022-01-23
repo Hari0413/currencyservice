@@ -12,7 +12,7 @@ pipeline {
 
   agent {
     kubernetes {
-      label 'emailservice'
+      label 'currencyservice'
       defaultContainer 'jnlp'
       yaml """
 apiVersion: v1
@@ -24,7 +24,7 @@ spec:
   # Use service account that can deploy to all namespaces
   # serviceAccountName: cd-jenkins
   containers:
-  - name: python
+  - name: nodejs
     image: node:latest
     command:
     - cat
@@ -45,7 +45,7 @@ spec:
   stages {
     stage('build') {
       steps {
-        container('javascript') {
+        container('nodejs') {
           sh """
             ln -s `pwd`
           """
